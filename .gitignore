@@ -1,0 +1,67 @@
+# -------------------------
+# Python / FastAPI
+# -------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+*.db
+instance/
+.env
+.venv/
+venv/
+env/
+ENV/
+
+# Uvicorn logs
+*.log
+
+# Pytest cache
+.pytest_cache/
+
+# MyPy cache
+.mypy_cache/
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+
+# -------------------------
+# Node / React / Vite
+# -------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Production build
+dist/
+build/
+
+# Local environment overrides
+*.local
+
+# -------------------------
+# OS / Editor Junk
+# -------------------------
+.DS_Store
+Thumbs.db
+
+# Editor settings
+.vscode/
+.idea/
+
+# -------------------------
+# Frontend specific
+# -------------------------
+*.tsbuildinfo
+*.eslintcache
+
+# Vite cache
+.vite/
