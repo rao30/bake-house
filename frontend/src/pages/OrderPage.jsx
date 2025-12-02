@@ -3,11 +3,14 @@ import { fetchProductConfig } from "../api/client";
 import ProductList from "../components/ProductList";
 import CartSummary from "../components/CartSummary";
 import OrderForm from "../components/OrderForm";
+import AuthPanel from "../components/AuthPanel";
+import OrderHistory from "../components/OrderHistory";
 
 export default function OrderPage() {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [lastOrder, setLastOrder] = useState(null);
+  const [auth, setAuth] = useState({ user: null, token: null });
 
   useEffect(() => {
     fetchProductConfig()
@@ -35,9 +38,13 @@ export default function OrderPage() {
       <div style={{ flex: 2 }}>
         <ProductList products={products} onAddItem={handleAddItem} />
         <CartSummary items={cart} onRemoveItem={handleRemoveItem} />
+        <OrderHistory isAuthenticated={!!auth.user} />
       </div>
       <div style={{ flex: 1 }}>
         <OrderForm cartItems={cart} onOrderCreated={handleOrderCreated} />
+        <div style={{ marginTop: "1rem" }}>
+          <AuthPanel onAuthChange={setAuth} />
+        </div>
         {lastOrder && (
           <div style={{ marginTop: "1rem" }}>
             <h3>Last Order ID</h3>
