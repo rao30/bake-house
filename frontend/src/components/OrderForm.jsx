@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { previewOrder, createOrder } from "../api/client";
+import { checkout } from "../api/client";
 
 export default function OrderForm({ cartItems, onOrderCreated }) {
   const [pickupDatetime, setPickupDatetime] = useState("");
@@ -11,6 +11,7 @@ export default function OrderForm({ cartItems, onOrderCreated }) {
   });
   const [status, setStatus] = useState(null);
   const [errors, setErrors] = useState([]);
+  const [payment, setPayment] = useState(null);
 
   const handleChangeCustomer = (field, value) => {
     setCustomer((prev) => ({ ...prev, [field]: value }));
@@ -20,6 +21,7 @@ export default function OrderForm({ cartItems, onOrderCreated }) {
     e.preventDefault();
     setStatus("loading");
     setErrors([]);
+    setPayment(null);
 
     const orderPayload = {
       customer,
@@ -28,16 +30,10 @@ export default function OrderForm({ cartItems, onOrderCreated }) {
     };
 
     try {
-      const preview = await previewOrder(orderPayload);
-      if (!preview.is_valid) {
-        setStatus("error");
-        setErrors(preview.errors);
-        return;
-      }
-
-      const order = await createOrder(orderPayload);
+      const result = await checkout(orderPayload);
       setStatus("success");
-      onOrderCreated(order);
+      setPayment(result.payment);
+      onOrderCreated(result.order);
     } catch (err) {
       setStatus("error");
       setErrors([err.message]);
@@ -105,7 +101,22 @@ export default function OrderForm({ cartItems, onOrderCreated }) {
       </button>
 
       {status === "loading" && <p>Validating order...</p>}
-      {status === "success" && <p>Order created successfully! 🎉</p>}
+      {status === "success" && (
+        <div>
+          <p>Order created successfully! 🎉</p>
+          {payment && (
+            <div style={{ marginTop: "0.5rem", padding: "0.5rem", border: "1px solid #ddd" }}>
+              <p>
+                Payment session ({payment.provider}): <strong>{payment.session_id}</strong>
+              </p>
+              <p>Status: {payment.status}</p>
+              <p style={{ color: "#6b7280" }}>
+                Use this session with the configured gateway to capture payment.
+              </p>
+            </div>
+          )}
+        </div>
+      )}
       {status === "error" && (
         <ul style={{ color: "red" }}>
           {errors.map((err, idx) => (

@@ -34,9 +34,15 @@ class OrderCreate(BaseModel):
 
 class OrderPreviewResult(BaseModel):
     is_valid: bool
-    errors: List[str] = []
+    errors: List[str] = Field(default_factory=list)
     # Optional recommendation for earliest valid time
     suggested_pickup_datetime: Optional[datetime] = None
+
+
+class OrderStatus(str, Enum):
+    pending_payment = "pending_payment"
+    confirmed = "confirmed"
+    paid = "paid"
 
 
 class Order(BaseModel):
@@ -45,6 +51,9 @@ class Order(BaseModel):
     pickup_datetime: datetime
     items: List[OrderItem]
     created_at: datetime
+    status: OrderStatus
+    user_id: Optional[str] = None
+    payment_reference: Optional[str] = None
 
 
 class ProductConfigResponse(BaseModel):
@@ -54,4 +63,28 @@ class ProductConfigResponse(BaseModel):
     storage_capacity: int
     wait_time_hours: int
     per_order_max: Optional[int] = None
-    extra: Dict[str, Any] = {}
+    extra: Dict[str, Any] = Field(default_factory=dict)
+
+
+class User(BaseModel):
+    id: str
+    email: EmailStr
+    name: Optional[str] = None
+    avatar: Optional[str] = None
+
+
+class AuthTokenResponse(BaseModel):
+    access_token: str
+    token_type: str = "bearer"
+    user: User
+
+
+class PaymentSession(BaseModel):
+    session_id: str
+    provider: str = "demo"
+    status: str = "pending"
+
+
+class CheckoutResponse(BaseModel):
+    order: Order
+    payment: PaymentSession
