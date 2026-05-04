@@ -1,0 +1,898 @@
+﻿[
+    {
+        "new_name":  "brownie_01.jpg",
+        "original_name":  "6ZF_7828.jpg",
+        "product_type":  "brownie",
+        "description":  "Overhead hero of a square chocolate brownie studded with dark chocolate chunks and a hint of red strawberry filling visible at the top edge, on a white round plate.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "brownie_02.jpg",
+        "original_name":  "6ZF_7829.jpg",
+        "product_type":  "brownie",
+        "description":  "Three-quarter view of the same chocolate-chunk brownie with a strawberry compote stripe peeking from the back edge, fudgy crumb visible on the side, on a white riser.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "brownie_03.jpg",
+        "original_name":  "6ZF_7830.jpg",
+        "product_type":  "brownie",
+        "description":  "Angled hero of a square fudgy brownie topped with a glossy Nutella swirl and a curled brownie shaving garnish, soft shadow on a white round riser.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "brownie_04.jpg",
+        "original_name":  "6ZF_7831.jpg",
+        "product_type":  "brownie",
+        "description":  "Overhead hero of the Nutella-topped brownie centered on a white plate, dense dark crumb framed by a pool of milk chocolate spread.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "brownie_05.jpg",
+        "original_name":  "6ZF_7832.jpg",
+        "product_type":  "brownie",
+        "description":  "Tight three-quarter hero of the Nutella-glazed brownie showing the dense layered crumb on the side and a brownie curl atop the chocolate spread.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "brownie_06.jpg",
+        "original_name":  "6ZF_7883.jpg",
+        "product_type":  "brownie",
+        "description":  "Square chocolate brownie topped with a glossy dark ganache pool and a Dark Fantasy sandwich cookie, shot top-down on a round white plate.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "brownie_07.jpg",
+        "original_name":  "6ZF_7884.jpg",
+        "product_type":  "brownie",
+        "description":  "Same Dark Fantasy cookie brownie viewed from a low three-quarter angle, showing dense fudgy crumb sides and glossy chocolate pool topping.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "brownie_08.jpg",
+        "original_name":  "6ZF_7885.jpg",
+        "product_type":  "brownie",
+        "description":  "Top-down view of a square chocolate brownie with shiny dark ganache and a centered Dark Fantasy sandwich cookie on a white round board.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "brownie_09.jpg",
+        "original_name":  "6ZF_7886.jpg",
+        "product_type":  "brownie",
+        "description":  "Square chocolate brownie decorated with a thick dark chocolate piped scribble on top, captured flat-lay on a white round plate.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "brownie_10.jpg",
+        "original_name":  "6ZF_7887.jpg",
+        "product_type":  "brownie",
+        "description":  "Three-quarter angle of the dark-chocolate-drizzled brownie with a moist crumb edge and visible red specks, on a white round pedestal.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "brownie_11.jpg",
+        "original_name":  "6ZF_7898.jpg",
+        "product_type":  "brownie",
+        "description":  "Square golden-yellow blondie drizzled with white chocolate, shot from above on a round gold cake board.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "brownie_12.jpg",
+        "original_name":  "6ZF_7899.jpg",
+        "product_type":  "brownie",
+        "description":  "Three-quarter view of the same butterscotch blondie with white chocolate drizzle, glossy gold board reflecting the dessert.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "brownie_13.jpg",
+        "original_name":  "6ZF_7900.jpg",
+        "product_type":  "brownie",
+        "description":  "Side-angled hero shot of a butterscotch blondie with white chocolate web drizzle, dense pale crumb, on a reflective gold board.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "brownie_14.jpg",
+        "original_name":  "6ZF_7901.jpg",
+        "product_type":  "brownie",
+        "description":  "Top-down view of a deep red velvet brownie criss-crossed with white chocolate drizzle on a round gold cake board.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "brownie_15.jpg",
+        "original_name":  "6ZF_7902.jpg",
+        "product_type":  "brownie",
+        "description":  "Three-quarter view of the red velvet brownie revealing a creamy interior layer beneath the white-chocolate-drizzled red top.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "brownie_16.jpg",
+        "original_name":  "6ZF_7903.jpg",
+        "product_type":  "brownie",
+        "description":  "Side hero of the red velvet brownie with white chocolate web on top, showing rich red crumb on a glossy gold round board.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "cookie_01.jpg",
+        "original_name":  "6ZF_7812.jpg",
+        "product_type":  "cookie",
+        "description":  "Top-down lifestyle spread on an engraved round wooden board featuring three groups of bite-sized cookies (red strawberry, dark chocolate, and golden chocolate-chip) arranged around a small cup of glossy chocolate dip on a clean white backdrop.",
+        "confidence":  "high",
+        "composition":  "lifestyle"
+    },
+    {
+        "new_name":  "cookie_02.jpg",
+        "original_name":  "6ZF_7814.jpg",
+        "product_type":  "cookie",
+        "description":  "Overhead lifestyle shot of mini cookie trios (pink-red, brown chocolate, and golden chocolate-chip) clustered on a wooden board beside two ramekins of melted chocolate, brightly lit with soft shadows.",
+        "confidence":  "high",
+        "composition":  "lifestyle"
+    },
+    {
+        "new_name":  "cookie_03.jpg",
+        "original_name":  "6ZF_7815.jpg",
+        "product_type":  "cookie",
+        "description":  "Detail close-up of a single golden cookie topped with a glossy chocolate ganache pool and a Ferrero Rocher chunk garnish, photographed on a rustic wooden board.",
+        "confidence":  "high",
+        "composition":  "detail"
+    },
+    {
+        "new_name":  "cookie_04.jpg",
+        "original_name":  "6ZF_7816.jpg",
+        "product_type":  "cookie",
+        "description":  "Hero overhead view of one cracked-edge cookie with a creamy chocolate ganache dollop and broken Ferrero Rocher piece on a small white round plate against a clean white backdrop.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "cookie_05.jpg",
+        "original_name":  "6ZF_7817.jpg",
+        "product_type":  "cookie",
+        "description":  "Slightly angled hero of the same chocolate-topped cookie with Rocher curl, glossy ganache catching soft studio light on a white plate.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "cookie_06.jpg",
+        "original_name":  "6ZF_7818.jpg",
+        "product_type":  "cookie",
+        "description":  "Tighter hero of the chocolate-ganache topped cookie with Ferrero garnish, showing the crisp golden cookie edges and smooth chocolate swirl, plated on white.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "cookie_07.jpg",
+        "original_name":  "6ZF_7819.jpg",
+        "product_type":  "cookie",
+        "description":  "Flat-lay hero of a single rich brown double-chocolate-chip cookie centered on a gold mirrored cake board with bright clean lighting.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "cookie_08.jpg",
+        "original_name":  "6ZF_7820.jpg",
+        "product_type":  "cookie",
+        "description":  "Three-quarter angled hero of one thick brown chocolate-chip cookie on a white round riser, soft shadow showcasing the craggy fudgy texture.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "cookie_09.jpg",
+        "original_name":  "6ZF_7822.jpg",
+        "product_type":  "cookie",
+        "description":  "Overhead hero of a classic golden chocolate-chip cookie with melty dark chips on a white round plate against a clean grey-white background.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "cookie_10.jpg",
+        "original_name":  "6ZF_7824.jpg",
+        "product_type":  "cookie",
+        "description":  "Three-quarter angled hero of a domed golden chocolate-chip cookie on a white riser, lit to highlight the chunky chocolate chips and crisp edges.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "cookie_11.jpg",
+        "original_name":  "6ZF_7825.jpg",
+        "product_type":  "cookie",
+        "description":  "Angled hero of a thick brown double-chocolate cookie on a white riser, deep cracks revealing fudgy interior with embedded chips.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "cookie_12.jpg",
+        "original_name":  "6ZF_7826.jpg",
+        "product_type":  "cookie",
+        "description":  "Overhead hero of a Biscoff cookie sandwich with a smear of caramel-coloured Lotus spread and a stamped Biscoff biscuit on top, plated on white.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "cookie_13.jpg",
+        "original_name":  "6ZF_7827.jpg",
+        "product_type":  "cookie",
+        "description":  "Three-quarter angled hero of the same Biscoff-topped cookie showing the layered Lotus biscuit and creamy spread, soft studio lighting on white riser.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "cupcake_01.jpg",
+        "original_name":  "6ZF_7833.jpg",
+        "product_type":  "cupcake",
+        "description":  "Slightly angled overhead of a chocolate cupcake in a fluted red liner topped with a swirl of chocolate buttercream and chocolate-chip garnish, on a white riser.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "cupcake_02.jpg",
+        "original_name":  "6ZF_7834.jpg",
+        "product_type":  "cupcake",
+        "description":  "Vertical hero of a chocolate cupcake in red ridged liner crowned with a tall chocolate frosting swirl and scattered chocolate chips, soft white background.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "cupcake_03.jpg",
+        "original_name":  "6ZF_7836.jpg",
+        "product_type":  "cupcake",
+        "description":  "Eye-level hero of the same chocolate-frosted chocolate cupcake in red wrapper, frosting peaked with chocolate chips, on a white round riser.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "cupcake_04.jpg",
+        "original_name":  "6ZF_7837.jpg",
+        "product_type":  "cupcake",
+        "description":  "Vertical hero of a chocolate cupcake in red liner with a generous chocolate buttercream swirl topped with mini chocolate chips, clean white studio backdrop.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "cupcake_05.jpg",
+        "original_name":  "6ZF_7838.jpg",
+        "product_type":  "cupcake",
+        "description":  "Vertical hero of a red velvet cupcake in red ridged liner crowned with a tall ruffled white cream cheese frosting swirl, on white riser.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "cupcake_06.jpg",
+        "original_name":  "6ZF_7839.jpg",
+        "product_type":  "cupcake",
+        "description":  "Closer vertical hero of the red velvet cupcake with piped white cream cheese frosting swirl, the red sponge peeking through the ruffles.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "cupcake_07.jpg",
+        "original_name":  "6ZF_7840.jpg",
+        "product_type":  "cupcake",
+        "description":  "Vertical hero of a vanilla-strawberry cupcake in a red liner topped with a tall pink-purple berry buttercream rosette, jam visible at the cake\u0027s edge.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "cupcake_08.jpg",
+        "original_name":  "6ZF_7841.jpg",
+        "product_type":  "cupcake",
+        "description":  "Lower-framed vertical hero of the same berry-frosted cupcake with deep negative space above, pink rosette swirl crowning the red-wrapped sponge.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "cupcake_09.jpg",
+        "original_name":  "6ZF_7842.jpg",
+        "product_type":  "cupcake",
+        "description":  "Vertical hero of a red velvet cupcake topped with a smooth conical pile of white whipped cream/buttercream, set on a white round riser.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "cupcake_10.jpg",
+        "original_name":  "6ZF_7843.jpg",
+        "product_type":  "cupcake",
+        "description":  "Lower-framed vertical hero of a red velvet cupcake with a tall peaked white whipped frosting swirl, generous negative space above on a clean white backdrop.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "cupcake_11.jpg",
+        "original_name":  "6ZF_7844.jpg",
+        "product_type":  "cupcake",
+        "description":  "Vertical studio shot of a single red-liner cupcake with a dark chocolate frosting rosette on a round white riser against a soft white backdrop, lots of negative space above.",
+        "confidence":  "medium",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "cupcake_12.jpg",
+        "original_name":  "6ZF_7845.jpg",
+        "product_type":  "cupcake",
+        "description":  "Tighter vertical hero of the same red-liner cupcake with a glossy dark chocolate piped swirl, centered on a white pedestal with bright clean lighting.",
+        "confidence":  "medium",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "cupcake_13.jpg",
+        "original_name":  "6ZF_7846.jpg",
+        "product_type":  "cupcake",
+        "description":  "Slightly off-center hero of a red-liner cupcake topped with a sculpted dark chocolate buttercream rose on a small white round riser.",
+        "confidence":  "medium",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "cupcake_14.jpg",
+        "original_name":  "6ZF_7848.jpg",
+        "product_type":  "cupcake",
+        "description":  "Vanilla cupcake in a red liner topped with a tall pink whipped frosting swirl, vertical studio composition with airy white background.",
+        "confidence":  "medium",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "cupcake_15.jpg",
+        "original_name":  "6ZF_7849.jpg",
+        "product_type":  "cupcake",
+        "description":  "Vanilla cupcake in red liner with a soft pink piped frosting peak, vertical hero shot on a white riser with soft shadow on left.",
+        "confidence":  "medium",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "cupcake_16.jpg",
+        "original_name":  "6ZF_7850.jpg",
+        "product_type":  "cupcake",
+        "description":  "Vanilla cupcake in a red liner crowned with a thick swirl of plain white whipped cream, vertical clean studio shot.",
+        "confidence":  "medium",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "cupcake_17.jpg",
+        "original_name":  "6ZF_7851.jpg",
+        "product_type":  "cupcake",
+        "description":  "Same red-liner vanilla cupcake with white whipped cream swirl, slightly different angle with a white prop block visible to the left.",
+        "confidence":  "medium",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "cupcake_18.jpg",
+        "original_name":  "6ZF_7853.jpg",
+        "product_type":  "cupcake",
+        "description":  "Cupcake in a red liner with a milk-chocolate buttercream base topped by a dark chocolate piped rosette, vertical studio shot.",
+        "confidence":  "medium",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "cupcake_19.jpg",
+        "original_name":  "6ZF_7870.jpg",
+        "product_type":  "cupcake",
+        "description":  "Overhead shot of ten mini cupcakes in white paper liners with assorted pink, white and lavender frosting peaks arranged on a round wooden board.",
+        "confidence":  "medium",
+        "composition":  "group"
+    },
+    {
+        "new_name":  "cupcake_20.jpg",
+        "original_name":  "6ZF_7873.jpg",
+        "product_type":  "cupcake",
+        "description":  "Three-quarter angle group shot of mini cupcakes in white liners topped with pink, white and lavender piped frosting on a wooden serving board.",
+        "confidence":  "medium",
+        "composition":  "group"
+    },
+    {
+        "new_name":  "custom_cake_01.jpg",
+        "original_name":  "6ZF_7874.jpg",
+        "product_type":  "custom_cake",
+        "description":  "Vertical hero of a small three-tier chocolate buttercream cake with piped hearts, swags and rosette decoration on a white round riser with airy white backdrop.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "custom_cake_02.jpg",
+        "original_name":  "6ZF_7876.jpg",
+        "product_type":  "custom_cake",
+        "description":  "Slightly elevated vertical view of a three-tier chocolate buttercream cake with intricate piped hearts and floral details, centered low in the frame for tall negative space above.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "custom_cake_03.jpg",
+        "original_name":  "6ZF_7877.jpg",
+        "product_type":  "custom_cake",
+        "description":  "Eye-level vertical hero of a three-tier chocolate buttercream cake decorated with hearts, swags and a rose topper on a clean white pedestal.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "custom_cake_04.jpg",
+        "original_name":  "6ZF_7880.jpg",
+        "product_type":  "custom_cake",
+        "description":  "Vertical hero of a small three-tier ivory white-chocolate cake with piped hearts, pearl swags and a rose topper centered on a white round riser.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "custom_cake_05.jpg",
+        "original_name":  "6ZF_7881.jpg",
+        "product_type":  "custom_cake",
+        "description":  "Miniature three-tier ivory wedding-style cake with piped pearl borders, hearts and rosettes, centered on a round white pedestal under bright soft lighting.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "donut_01.jpg",
+        "original_name":  "6ZF_7854.jpg",
+        "product_type":  "donut",
+        "description":  "Overhead shot of a single ring doughnut with glossy dark chocolate glaze and rainbow candy-coated chocolate buttons arranged in a circle on a white plate.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "donut_02.jpg",
+        "original_name":  "6ZF_7855.jpg",
+        "product_type":  "donut",
+        "description":  "Three-quarter angle of the dark-chocolate-glazed ring doughnut topped with rainbow candy buttons on a round white riser.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "donut_03.jpg",
+        "original_name":  "6ZF_7856.jpg",
+        "product_type":  "donut",
+        "description":  "Overhead shot of a milk-chocolate-glazed ring doughnut studded with rainbow candy buttons on a white plate, with generous negative space to the right.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "donut_04.jpg",
+        "original_name":  "6ZF_7857.jpg",
+        "product_type":  "donut",
+        "description":  "Three-quarter angle hero of a milk-chocolate-glazed ring doughnut with rainbow candy buttons on a white round riser, golden fried edge visible.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "donut_05.jpg",
+        "original_name":  "6ZF_7859.jpg",
+        "product_type":  "donut",
+        "description":  "Overhead shot of a dark-chocolate-glazed ring doughnut drizzled with white chocolate stripes on a white plate.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "donut_06.jpg",
+        "original_name":  "6ZF_7860.jpg",
+        "product_type":  "donut",
+        "description":  "Three-quarter angle of a dark-chocolate-glazed doughnut with white chocolate drizzle showing the puffy golden fried sides.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "donut_07.jpg",
+        "original_name":  "6ZF_7861.jpg",
+        "product_type":  "donut",
+        "description":  "Overhead shot of a milk-chocolate-glazed ring doughnut with crisscross dark and white chocolate drizzle on a white plate.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "donut_08.jpg",
+        "original_name":  "6ZF_7862.jpg",
+        "product_type":  "donut",
+        "description":  "Three-quarter angle of the milk-chocolate-glazed doughnut with dark and white drizzle, golden fried edges showing under the glaze.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "donut_09.jpg",
+        "original_name":  "6ZF_7863.jpg",
+        "product_type":  "donut",
+        "description":  "Overhead shot of a vanilla-glazed ring doughnut with bold dark chocolate squiggle drizzle on a white round plate.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "donut_10.jpg",
+        "original_name":  "6ZF_7864.jpg",
+        "product_type":  "donut",
+        "description":  "Three-quarter angle of a white-vanilla-glazed doughnut with thick dark chocolate squiggle drizzle on a white riser.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "donut_11.jpg",
+        "original_name":  "6ZF_7865.jpg",
+        "product_type":  "donut",
+        "description":  "Overhead shot of a classic glossy honey-glazed ring doughnut on a white plate with bright even lighting and lots of negative space.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "donut_12.jpg",
+        "original_name":  "6ZF_7867.jpg",
+        "product_type":  "donut",
+        "description":  "Three-quarter angle of a glossy honey-glazed ring doughnut showing the rich golden caramelized exterior on a white riser.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "donut_13.jpg",
+        "original_name":  "6ZF_7868.jpg",
+        "product_type":  "donut",
+        "description":  "Overhead shot of a glazed ring doughnut dusted with powdered sugar and small specks on a white plate.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "donut_14.jpg",
+        "original_name":  "6ZF_7869.jpg",
+        "product_type":  "donut",
+        "description":  "Three-quarter angle of a glazed ring doughnut sprinkled with powdered sugar, showing texture and irregular fried edges.",
+        "confidence":  "high",
+        "composition":  "detail"
+    },
+    {
+        "new_name":  "facility_01.jpg",
+        "original_name":  "6ZF_7934.jpg",
+        "product_type":  "facility",
+        "description":  "Wide interior shot of a bright bakery seating area with The BakeHouse logo on a frosted Icing Room door, white storage drawers, plant, table, and chairs.",
+        "confidence":  "high",
+        "composition":  "lifestyle"
+    },
+    {
+        "new_name":  "facility_02.jpg",
+        "original_name":  "6ZF_7935.jpg",
+        "product_type":  "facility",
+        "description":  "Compact interior view of the bakery showing the Icing Room door with cupcake-house logo, wall clock, drawers, dining table, and vertical blinds.",
+        "confidence":  "high",
+        "composition":  "lifestyle"
+    },
+    {
+        "new_name":  "facility_03.jpg",
+        "original_name":  "6ZF_7937.jpg",
+        "product_type":  "facility",
+        "description":  "Bakery office or consultation nook with white desk, chairs, bookshelf, blue notice board, and bright pink curtain against vertical blinds.",
+        "confidence":  "high",
+        "composition":  "lifestyle"
+    },
+    {
+        "new_name":  "facility_04.jpg",
+        "original_name":  "6ZF_7939.jpg",
+        "product_type":  "facility",
+        "description":  "Wide-angle interior of the bakery entry showing the frosted Icing Room glass door with logo, white drawers with floral decor, clock, and seating.",
+        "confidence":  "high",
+        "composition":  "lifestyle"
+    },
+    {
+        "new_name":  "facility_05.jpg",
+        "original_name":  "6ZF_7942.jpg",
+        "product_type":  "facility",
+        "description":  "Production room view featuring a Blue Star glass-door display fridge, stainless commercial deck oven, whiteboard, and bistro table with chairs.",
+        "confidence":  "high",
+        "composition":  "lifestyle"
+    },
+    {
+        "new_name":  "facility_06.jpg",
+        "original_name":  "6ZF_7945.jpg",
+        "product_type":  "facility",
+        "description":  "Wider angle of the production room showing the Blue Star refrigerator, Indulge double-deck oven, whiteboard, bar table, and folding chairs.",
+        "confidence":  "high",
+        "composition":  "lifestyle"
+    },
+    {
+        "new_name":  "facility_07.jpg",
+        "original_name":  "6ZF_7947.jpg",
+        "product_type":  "facility",
+        "description":  "Close-up of the illuminated The BakeHouse signboard with cupcake-shaped house logo and pink neon-style script on a black background.",
+        "confidence":  "high",
+        "composition":  "detail"
+    },
+    {
+        "new_name":  "facility_08.jpg",
+        "original_name":  "6ZF_7948.jpg",
+        "product_type":  "facility",
+        "description":  "Exterior corridor view of the bakery entrance with the illuminated white BakeHouse signboard mounted beside a glass door and stairwell.",
+        "confidence":  "high",
+        "composition":  "lifestyle"
+    },
+    {
+        "new_name":  "facility_09.jpg",
+        "original_name":  "6ZF_7949.jpg",
+        "product_type":  "facility",
+        "description":  "Angled close-up of the illuminated The BakeHouse signboard featuring the cupcake-house logo and pink script lettering on a gray panel.",
+        "confidence":  "high",
+        "composition":  "detail"
+    },
+    {
+        "new_name":  "facility_10.jpg",
+        "original_name":  "6ZF_7950.jpg",
+        "product_type":  "facility",
+        "description":  "Pink decorative display wall with floating glass shelves holding framed photos, cake stands, and trinkets adjacent to the Icing Room door.",
+        "confidence":  "high",
+        "composition":  "lifestyle"
+    },
+    {
+        "new_name":  "facility_11.jpg",
+        "original_name":  "6ZF_7952.jpg",
+        "product_type":  "facility",
+        "description":  "Wide shot of the bakery\u0027s pink display wall with framed cake photos and decorative items on glass shelves, with the BakeHouse logo door at right.",
+        "confidence":  "high",
+        "composition":  "lifestyle"
+    },
+    {
+        "new_name":  "facility_12.jpg",
+        "original_name":  "6ZF_7953.jpg",
+        "product_type":  "facility",
+        "description":  "Front view of the pink showcase wall featuring floating shelves, framed memorabilia, faux floral arrangements, and the Icing Room glass door.",
+        "confidence":  "high",
+        "composition":  "lifestyle"
+    },
+    {
+        "new_name":  "facility_13.jpg",
+        "original_name":  "6ZF_7958.jpg",
+        "product_type":  "facility",
+        "description":  "Bright interior shot of the bakery showing the Icing Room door with The BakeHouse logo, white storage drawers, indoor plant, dining table and chairs.",
+        "confidence":  "high",
+        "composition":  "lifestyle"
+    },
+    {
+        "new_name":  "muffin_01.jpg",
+        "original_name":  "6ZF_7911.jpg",
+        "product_type":  "muffin",
+        "description":  "Domed golden muffin studded with red berry jam pockets, baked in a dark brown tulip paper wrapper on a small white pedestal.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "muffin_02.jpg",
+        "original_name":  "6ZF_7912.jpg",
+        "product_type":  "muffin",
+        "description":  "Same berry-jam tulip muffin shot from a slightly lower angle with extra negative space above, emphasizing the rustic dark wrapper.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "muffin_03.jpg",
+        "original_name":  "6ZF_7913.jpg",
+        "product_type":  "muffin",
+        "description":  "Berry jam muffin in a dark tulip liner photographed at eye level, highlighting the glossy red jam pools on the golden domed top.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "muffin_04.jpg",
+        "original_name":  "6ZF_7914.jpg",
+        "product_type":  "muffin",
+        "description":  "Top-down view of a domed almond muffin in a dark tulip wrapper, topped with toasted sliced almonds, on a white round riser against a clean white background.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "muffin_05.jpg",
+        "original_name":  "6ZF_7915.jpg",
+        "product_type":  "muffin",
+        "description":  "Side-angle hero of an almond muffin in a black tulip liner with golden-brown crown studded with sliced almonds, lit softly on a white pedestal.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "muffin_06.jpg",
+        "original_name":  "6ZF_7916.jpg",
+        "product_type":  "muffin",
+        "description":  "Front-facing plain vanilla muffin with smooth golden dome in a black tulip wrapper, centered on a round white riser with bright airy lighting.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "muffin_07.jpg",
+        "original_name":  "6ZF_7917.jpg",
+        "product_type":  "muffin",
+        "description":  "Overhead shot of a vanilla muffin with crackled golden top peeking out of a dark brown tulip wrapper on a white round board.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "muffin_08.jpg",
+        "original_name":  "6ZF_7918.jpg",
+        "product_type":  "muffin",
+        "description":  "Top-down view of a double chocolate chip muffin with rich cocoa crumb and scattered chocolate chips in a dark tulip wrapper on a white riser.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "muffin_09.jpg",
+        "original_name":  "6ZF_7919.jpg",
+        "product_type":  "muffin",
+        "description":  "Side hero of a chocolate chip muffin in a black tulip liner with a chocolate crown studded with chips, on a circular white pedestal.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "muffin_10.jpg",
+        "original_name":  "6ZF_7920.jpg",
+        "product_type":  "muffin",
+        "description":  "Overhead view of a plain chocolate muffin with smooth domed top and visible bake crackles in a dark tulip wrapper on a white round board.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "muffin_11.jpg",
+        "original_name":  "6ZF_7921.jpg",
+        "product_type":  "muffin",
+        "description":  "Front-facing chocolate muffin in a tall black tulip wrapper with cracked cocoa-colored dome, softly lit on a white circular pedestal.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "sheet_cake_01.jpg",
+        "original_name":  "6ZF_7904.jpg",
+        "product_type":  "sheet_cake",
+        "description":  "Top-down view of a square sponge sheet cake iced in white whipped cream with a piped rosette border and silver pearl sprinkles, on a coral-pink board.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "sheet_cake_02.jpg",
+        "original_name":  "6ZF_7906.jpg",
+        "product_type":  "sheet_cake",
+        "description":  "Three-quarter view of the white-frosted vanilla sheet cake showing the golden sponge layer beneath piped cream borders and pearl decorations.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "sheet_cake_03.jpg",
+        "original_name":  "6ZF_7907.jpg",
+        "product_type":  "sheet_cake",
+        "description":  "Top-down view of a square chocolate sheet cake with chocolate buttercream frosting, piped border rosettes and scattered chocolate chips, on a green board.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "sheet_cake_04.jpg",
+        "original_name":  "6ZF_7908.jpg",
+        "product_type":  "sheet_cake",
+        "description":  "Three-quarter view of the chocolate sheet cake exposing rich brown sponge under thick chocolate buttercream and chip topping.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "sheet_cake_05.jpg",
+        "original_name":  "6ZF_7909.jpg",
+        "product_type":  "sheet_cake",
+        "description":  "Wider three-quarter angle of the chocolate buttercream sheet cake on its green square board, showing piped rosette border and chocolate chips.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "tea_time_cake_01.jpg",
+        "original_name":  "6ZF_7888.jpg",
+        "product_type":  "tea_time_cake",
+        "description":  "Square lamington-style cake coated in coarse desiccated coconut tinted gray-brown, viewed flat on a round white board.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "tea_time_cake_02.jpg",
+        "original_name":  "6ZF_7890.jpg",
+        "product_type":  "tea_time_cake",
+        "description":  "Three-quarter angle of the gray-brown coconut-coated lamington showing rough textured coconut crust and crumbs scattered on a white pedestal.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "tea_time_cake_03.jpg",
+        "original_name":  "6ZF_7892.jpg",
+        "product_type":  "tea_time_cake",
+        "description":  "Square lamington dipped in golden caramel-toned syrup and dusted with white coconut, photographed top-down on a round white board.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "tea_time_cake_04.jpg",
+        "original_name":  "6ZF_7893.jpg",
+        "product_type":  "tea_time_cake",
+        "description":  "Three-quarter view of the caramel-glazed lamington coated in fluffy white desiccated coconut, set on a round white pedestal.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "tea_time_cake_05.jpg",
+        "original_name":  "6ZF_7894.jpg",
+        "product_type":  "tea_time_cake",
+        "description":  "Square lamington dyed bright yellow and rolled in pale coconut, top-down composition on a round white plate.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "tea_time_cake_06.jpg",
+        "original_name":  "6ZF_7895.jpg",
+        "product_type":  "tea_time_cake",
+        "description":  "Three-quarter angle of the vivid yellow coconut lamington with crumbs scattered on a round white pedestal under even lighting.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "tea_time_cake_07.jpg",
+        "original_name":  "6ZF_7896.jpg",
+        "product_type":  "tea_time_cake",
+        "description":  "Square lamington tossed in pink and white coconut shavings, shot flat-lay on a round white board.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "tea_time_cake_08.jpg",
+        "original_name":  "6ZF_7897.jpg",
+        "product_type":  "tea_time_cake",
+        "description":  "Three-quarter view of the pink-and-white coconut lamington with a fluffy textured coating on a round white pedestal.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "tea_time_cake_09.jpg",
+        "original_name":  "6ZF_7922.jpg",
+        "product_type":  "tea_time_cake",
+        "description":  "Side view of a marble loaf cake on a wooden cutting board with one slice cut showing a dramatic chocolate-vanilla swirl interior.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "tea_time_cake_10.jpg",
+        "original_name":  "6ZF_7924.jpg",
+        "product_type":  "tea_time_cake",
+        "description":  "Overhead shot of a marble loaf cake on a wooden board with a cut end slice revealing the swirled chocolate and vanilla crumb.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "tea_time_cake_11.jpg",
+        "original_name":  "6ZF_7925.jpg",
+        "product_type":  "tea_time_cake",
+        "description":  "Side angle of a golden vanilla pound loaf with a tender pale yellow crumb visible on the cut slice, resting on a wooden cutting board.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "tea_time_cake_12.jpg",
+        "original_name":  "6ZF_7926.jpg",
+        "product_type":  "tea_time_cake",
+        "description":  "Overhead view of a vanilla pound loaf cake with a cracked golden top and a single cut slice on a wooden cutting board.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "tea_time_cake_13.jpg",
+        "original_name":  "6ZF_7927.jpg",
+        "product_type":  "tea_time_cake",
+        "description":  "Top-down image of a walnut-studded banana or carrot loaf cake on a wooden board with a small slice cut to show the moist amber crumb.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "tea_time_cake_14.jpg",
+        "original_name":  "6ZF_7929.jpg",
+        "product_type":  "tea_time_cake",
+        "description":  "Side-angle hero of a walnut-topped banana loaf with caramel-toned crumb visible on the cut slice, on a wooden cutting board.",
+        "confidence":  "high",
+        "composition":  "hero"
+    },
+    {
+        "new_name":  "tea_time_cake_15.jpg",
+        "original_name":  "6ZF_7930.jpg",
+        "product_type":  "tea_time_cake",
+        "description":  "Side view of a chocolate loaf cake with a tender cocoa-brown crumb shown on a cut end slice, displayed on a wooden cutting board.",
+        "confidence":  "high",
+        "composition":  "hero"
+    }
+]
