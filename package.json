@@ -4,12 +4,16 @@
   "description": "Single page BakeHouse menu for Railway deployment",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "thumbnails": "node scripts/generate-thumbnails.js"
   },
   "engines": {
     "node": ">=18"
   },
   "dependencies": {
     "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.5"
   }
 }
