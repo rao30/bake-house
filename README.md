@@ -9,4 +9,4 @@ npm install
 npm start
 ```
 
-Then visit `http://localhost:3000` to view the menu. See [docs/LOCAL_SETUP.md](docs/LOCAL_SETUP.md) for the legacy FastAPI/React stack if you want to extend this further.
+Then visit `http://localhost:3000` to view the menu.

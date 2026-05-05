@@ -8,10 +8,7 @@ Quick-reference snapshot of `bake-house`. Update when something material changes
 
 A single-page menu site for **The BakeHouse** (Indian bakery; phone `+91 9849450882`, instagram `@bakehouse.52`, email `support@thebakehouse.in`).
 
-There are **two stacks in this repo**, only one of which is live:
-
-- **Live / deployed**: `server.js` (~17 lines, Express) serves `public/index.html` as a static page. Deployed on Railway. This is the real customer-facing site.
-- **Dormant / future**: `backend/` (FastAPI: orders, Google auth, payment sessions) + `frontend/` (React + Vite). Not deployed. Don't touch unless the user asks — treat as design exploration for a future ordering flow.
+`server.js` (~17 lines, Express) serves `public/index.html` as a static page. Deployed on Railway. This is the customer-facing site — the only stack in the repo.
 
 ---
 
@@ -65,22 +62,11 @@ There are **two stacks in this repo**, only one of which is live:
 
 ---
 
-## Dormant FastAPI/React stack — quick map
-
-- Backend entry: [backend/app/main.py](backend/app/main.py) (auth, orders, checkout, payment confirmation endpoints).
-- Product config (6 keys, **does not match live menu or photo buckets**): [backend/app/config.py:5-49](backend/app/config.py#L5-L49). Has: `custom_cake`, `sheet_cake`, `muffin`, `cookie`, `brownie`, `donut`. Missing `cupcake` and `loaf_cake`.
-- Models: [backend/app/models.py](backend/app/models.py). DB layer: [backend/app/db.py](backend/app/db.py). DB design doc: [backend/DB_PLAN.md](backend/DB_PLAN.md).
-- Frontend entry: [frontend/src/App.jsx](frontend/src/App.jsx). Product list UI: [frontend/src/components/ProductList.jsx](frontend/src/components/ProductList.jsx) (no image rendering yet).
-- Local setup: [docs/LOCAL_SETUP.md](docs/LOCAL_SETUP.md). Tests: [backend/tests/test_main.py](backend/tests/test_main.py). Plan: [TEST_PLAN.md](TEST_PLAN.md).
-
----
-
 ## Repo root quick map
 
-- [README.md](README.md) — minimal, points to LOCAL_SETUP for legacy stack.
+- [README.md](README.md) — minimal install + run instructions.
 - [package.json](package.json) — Node side, only dependency is `express`. `npm start` runs `server.js`.
-- [launch.json](launch.json) — VS Code launch configs (lives at root, not `.vscode/`).
-- [scripts/setup_local.sh](scripts/setup_local.sh) — bootstraps the dormant FastAPI/React stack.
+- [scripts/generate-thumbnails.js](scripts/generate-thumbnails.js) — `npm run thumbnails`, builds menu thumbs from photo source folder.
 - [scripts/rename_photos.ps1](scripts/rename_photos.ps1), [scripts/photo_manifest.json](scripts/photo_manifest.json) — photo work output.
 
 ---
