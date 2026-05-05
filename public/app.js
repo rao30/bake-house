@@ -377,11 +377,11 @@ window.hideCart = () => {
                                     return `
                                     <div class="group relative bg-white/50 border border-[#4a3b32]/5 rounded-2xl overflow-hidden hover:shadow-lg transition-all hover:bg-white/70 flex flex-col" data-item-card="${itemId}">
                                         ${item.image ? `
-                                            <button type="button" class="block w-full aspect-[4/3] overflow-hidden bg-[#f1c6cf]/30 lightbox-trigger" data-image="${item.image}" data-alt="${item.name}" aria-label="View larger photo of ${item.name}">
+                                            <button type="button" class="block w-full aspect-square overflow-hidden bg-[#f1c6cf]/30 lightbox-trigger" data-image="${item.image}" data-alt="${item.name}" aria-label="View larger photo of ${item.name}">
                                                 <img src="${item.image}" alt="${item.name}" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                                             </button>
                                         ` : `
-                                            <div class="w-full aspect-[4/3] bg-gradient-to-br from-[#f8e2e7] via-[#f9f3e5] to-[#f1c6cf] flex flex-col items-center justify-center gap-2 text-center px-4">
+                                            <div class="w-full aspect-square bg-gradient-to-br from-[#f8e2e7] via-[#f9f3e5] to-[#f1c6cf] flex flex-col items-center justify-center gap-2 text-center px-4">
                                                 <span class="font-serif text-2xl text-[#4a3b32]">Sweet Treat</span>
                                                 <span class="text-[10px] uppercase tracking-widest text-[#4a3b32]/60 font-semibold">Photo coming soon</span>
                                             </div>
