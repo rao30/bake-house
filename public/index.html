@@ -42,7 +42,7 @@
 </head>
 <body>
     <div class="texture-overlay"></div>
-    <div id="app" class="min-h-screen pb-20 relative"></div>
+    <div id="app" class="min-h-screen pb-24 sm:pb-12 relative"></div>
     <script>
         const BUSINESS_INFO = {
             name: "The BakeHouse",
@@ -110,6 +110,14 @@
         const PHONE_NUMBER_CLEAN = BUSINESS_INFO.phone.replace(/[^0-9]/g, "");
         const WHATSAPP_LINK = `https://wa.me/${PHONE_NUMBER_CLEAN}`;
         const CALL_LINK = `tel:${BUSINESS_INFO.phone.replace(/\s+/g, "")}`;
+        const waLinkFor = (item) => {
+            const priceSuffix = item && item.price ? ` (${item.price})` : "";
+            const msg = item
+                ? `Hi! I'd like to order: *${item.name}*${priceSuffix}. Could you confirm availability and pickup/delivery options?`
+                : `Hi! I have a question about The BakeHouse menu.`;
+            return `${WHATSAPP_LINK}?text=${encodeURIComponent(msg)}`;
+        };
+        const GENERAL_WA_LINK = waLinkFor(null);
 
         (function() {
             const app = document.getElementById("app");
@@ -129,6 +137,31 @@
                 modal.querySelector(".modal-content").classList.add("scale-95");
                 modal.classList.add("opacity-0");
                 setTimeout(() => modal.classList.add("hidden"), 300);
+            };
+
+            window.openLightbox = (src, alt) => {
+                const lb = document.getElementById("lightbox");
+                const img = document.getElementById("lightboxImg");
+                const cap = document.getElementById("lightboxCaption");
+                img.src = src;
+                img.alt = alt || "";
+                cap.textContent = alt || "";
+                lb.classList.remove("hidden");
+                lb.classList.add("flex");
+                requestAnimationFrame(() => lb.classList.remove("opacity-0"));
+                document.body.style.overflow = "hidden";
+            };
+
+            window.closeLightbox = () => {
+                const lb = document.getElementById("lightbox");
+                lb.classList.add("opacity-0");
+                setTimeout(() => {
+                    lb.classList.add("hidden");
+                    lb.classList.remove("flex");
+                    const img = document.getElementById("lightboxImg");
+                    if (img) img.src = "";
+                    document.body.style.overflow = "";
+                }, 300);
             };
 
             const renderNavButtons = (currentCategory) => MENU_DATA.map(section => `
@@ -173,7 +206,7 @@
                             ${renderNavButtons(activeCategory)}
                         </div>
                     </div>
-                    <main class="pt-40 max-w-3xl mx-auto px-4 sm:px-6">
+                    <main class="pt-40 max-w-6xl mx-auto px-4 sm:px-6">
                         <div class="text-center mb-12 space-y-4">
                             <div class="w-16 h-16 mx-auto bg-[#ebaeb3] rounded-full flex items-center justify-center text-3xl shadow-inner">🧁</div>
                             <h1 class="text-4xl sm:text-5xl font-serif font-bold text-[#4a3b32]">Menu</h1>
@@ -187,32 +220,30 @@
                                         <h2 class="text-2xl font-serif font-bold text-[#4a3b32] border-b-2 border-[#ebaeb3] pb-1 pr-4 inline-block">${section.category.toUpperCase()}</h2>
                                         <div class="h-px bg-[#4a3b32]/10 flex-grow"></div>
                                     </div>
-                                    <div class="grid gap-6 sm:grid-cols-1">
+                                    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                                         ${section.items.map(item => `
-                                            <div class="group relative bg-white/40 border border-[#4a3b32]/5 p-5 rounded-xl hover:shadow-md transition-all hover:bg-white/60">
-                                                <div class="flex items-start gap-4">
-                                                    <div class="flex-1 flex flex-col min-w-0 gap-2">
-                                                        <h3 class="text-lg font-bold text-[#4a3b32] group-hover:text-[#d65a66] transition-colors">${item.name}</h3>
-                                                        <p class="text-sm text-[#4a3b32]/70 leading-relaxed">${item.description}</p>
-                                                        <div class="mt-auto pt-2 flex items-center gap-2 text-sm font-semibold text-[#d65a66]">
-                                                            <span class="font-serif">${item.price}</span>
-                                                        </div>
+                                            <div class="group relative bg-white/50 border border-[#4a3b32]/5 rounded-2xl overflow-hidden hover:shadow-lg transition-all hover:bg-white/70 flex flex-col">
+                                                ${item.image ? `
+                                                    <button type="button" class="block w-full aspect-[4/3] overflow-hidden bg-[#f1c6cf]/30 lightbox-trigger" data-image="${item.image}" data-alt="${item.name}" aria-label="View larger photo of ${item.name}">
+                                                        <img src="${item.image}" alt="${item.name}" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                                                    </button>
+                                                ` : `
+                                                    <div class="w-full aspect-[4/3] bg-gradient-to-br from-[#f8e2e7] via-[#f9f3e5] to-[#f1c6cf] flex flex-col items-center justify-center gap-2 text-center px-4">
+                                                        <span class="font-serif text-2xl text-[#4a3b32]">Sweet Treat</span>
+                                                        <span class="text-[10px] uppercase tracking-widest text-[#4a3b32]/60 font-semibold">Photo coming soon</span>
                                                     </div>
-                                                    ${item.image ? `
-                                                        <div class="shrink-0">
-                                                            <img src="${item.image}" alt="${item.name}" loading="lazy" class="w-20 h-20 rounded-full object-cover border-2 border-[#ebaeb3] shadow-inner" />
-                                                        </div>
-                                                    ` : `
-                                                        <div class="shrink-0 flex flex-col items-center gap-2">
-                                                            <div class="w-20 h-20 rounded-full border-2 border-[#ebaeb3] bg-gradient-to-br from-[#f8e2e7] via-[#f9f3e5] to-[#f1c6cf] shadow-inner flex items-center justify-center text-center">
-                                                                <span class="text-[11px] font-bold text-[#4a3b32] leading-tight uppercase">Sweet Treat</span>
-                                                            </div>
-                                                            <span class="text-[10px] text-[#4a3b32]/60 font-semibold tracking-wide">Photo coming soon</span>
-                                                        </div>
-                                                    `}
+                                                `}
+                                                <div class="p-5 flex-1 flex flex-col gap-3">
+                                                    <div class="flex items-start justify-between gap-3">
+                                                        <h3 class="text-lg font-bold text-[#4a3b32] group-hover:text-[#d65a66] transition-colors leading-tight">${item.name}</h3>
+                                                        <span class="font-serif text-sm font-semibold text-[#d65a66] whitespace-nowrap shrink-0 pt-1">${item.price || ""}</span>
+                                                    </div>
+                                                    <p class="text-sm text-[#4a3b32]/75 leading-relaxed flex-1">${item.description}</p>
+                                                    <a href="${waLinkFor(item)}" target="_blank" rel="noopener noreferrer" class="mt-1 flex items-center justify-center gap-2 bg-green-600 text-white py-2.5 rounded-lg font-bold text-sm hover:bg-green-700 transition-colors shadow-sm" aria-label="Order ${item.name} on WhatsApp">
+                                                        ${icons.whatsapp}
+                                                        <span>Order on WhatsApp</span>
+                                                    </a>
                                                 </div>
-                                                <div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-[#ebaeb3] rounded-tr-lg opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                                <div class="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-[#ebaeb3] rounded-bl-lg opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                             </div>
                                         `).join("")}
                                     </div>
@@ -234,19 +265,36 @@
                             </div>
                         </div>
                     </footer>
-                    <button id="backToTop" class="fixed bottom-6 right-6 bg-[#4a3b32] text-[#f9f3e5] p-3 rounded-full shadow-lg hover:bg-[#d65a66] transition-all z-40 opacity-0 translate-y-10" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                    <button id="backToTop" class="fixed bottom-24 right-4 sm:bottom-6 sm:right-6 bg-[#4a3b32] text-[#f9f3e5] p-3 rounded-full shadow-lg hover:bg-[#d65a66] transition-all z-40 opacity-0 translate-y-10" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Back to top">
                         ${icons.arrowUp}
                     </button>
+                    <div id="mobileCtaBar" class="fixed bottom-0 left-0 right-0 z-40 sm:hidden bg-[#4a3b32] text-[#f9f3e5] shadow-[0_-4px_16px_rgba(0,0,0,0.18)]" style="padding-bottom: env(safe-area-inset-bottom);">
+                        <div class="grid grid-cols-2">
+                            <a href="${CALL_LINK}" class="flex items-center justify-center gap-2 py-3.5 font-bold text-sm tracking-wide hover:bg-[#3a2d27] transition-colors" aria-label="Call The BakeHouse">
+                                ${icons.phone}
+                                <span>Call</span>
+                            </a>
+                            <a href="${GENERAL_WA_LINK}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 py-3.5 font-bold text-sm tracking-wide bg-green-600 text-white hover:bg-green-700 transition-colors" aria-label="Message The BakeHouse on WhatsApp">
+                                ${icons.whatsapp}
+                                <span>WhatsApp</span>
+                            </a>
+                        </div>
+                    </div>
                     <div id="callModal" class="fixed inset-0 bg-black/50 z-[100] hidden transition-opacity duration-300 opacity-0 flex items-center justify-center p-4" aria-modal="true" role="dialog">
                         <div class="modal-content bg-white p-6 rounded-xl shadow-2xl max-w-sm w-full text-center space-y-4 transform scale-95 transition-transform duration-300">
                             <h3 class="text-xl font-serif font-bold text-[#4a3b32]">How would you like to order?</h3>
                             <p class="text-sm text-[#4a3b32]/80">Contact us at ${BUSINESS_INFO.phone} for custom orders.</p>
                             <div class="space-y-3 pt-2">
                                 <a href="${CALL_LINK}" target="_top" onclick="hideCallOptions()" class="w-full flex items-center justify-center gap-2 bg-[#d65a66] text-white py-3 rounded-lg font-bold hover:bg-[#c34d58] transition-colors shadow-md">${icons.phone} Call Directly</a>
-                                <a href="${WHATSAPP_LINK}" target="_blank" onclick="hideCallOptions()" class="w-full flex items-center justify-center gap-2 bg-green-500 text-white py-3 rounded-lg font-bold hover:bg-green-600 transition-colors shadow-md">${icons.whatsapp} Order via WhatsApp</a>
+                                <a href="${GENERAL_WA_LINK}" target="_blank" onclick="hideCallOptions()" class="w-full flex items-center justify-center gap-2 bg-green-500 text-white py-3 rounded-lg font-bold hover:bg-green-600 transition-colors shadow-md">${icons.whatsapp} Order via WhatsApp</a>
                                 <button onclick="hideCallOptions()" class="w-full text-sm text-[#4a3b32]/60 py-2 hover:text-[#4a3b32] transition-colors">Cancel</button>
                             </div>
                         </div>
+                    </div>
+                    <div id="lightbox" class="fixed inset-0 bg-black/90 z-[110] hidden opacity-0 transition-opacity duration-300 items-center justify-center p-4" role="dialog" aria-modal="true" aria-label="Photo viewer">
+                        <button type="button" id="lightboxClose" class="absolute top-4 right-4 text-white/85 hover:text-white w-11 h-11 flex items-center justify-center rounded-full hover:bg-white/10 text-3xl leading-none z-10" aria-label="Close photo viewer">&times;</button>
+                        <img id="lightboxImg" src="" alt="" class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl" />
+                        <div id="lightboxCaption" class="absolute bottom-6 left-0 right-0 text-center text-white/90 font-serif text-lg px-4"></div>
                     </div>
                 `;
             };
@@ -265,6 +313,25 @@
                         if (event.target.id === "callModal") hideCallOptions();
                     });
                 }
+                document.addEventListener("click", (event) => {
+                    const trigger = event.target.closest(".lightbox-trigger");
+                    if (trigger) {
+                        event.preventDefault();
+                        openLightbox(trigger.dataset.image, trigger.dataset.alt);
+                    }
+                });
+                const lightbox = document.getElementById("lightbox");
+                if (lightbox) {
+                    lightbox.addEventListener("click", (event) => {
+                        if (event.target.closest("img")) return;
+                        closeLightbox();
+                    });
+                }
+                document.addEventListener("keydown", (event) => {
+                    if (event.key !== "Escape") return;
+                    if (!document.getElementById("lightbox").classList.contains("hidden")) closeLightbox();
+                    else if (!document.getElementById("callModal").classList.contains("hidden")) hideCallOptions();
+                });
                 const navbar = document.getElementById("navbar");
                 const backToTop = document.getElementById("backToTop");
                 const handleScroll = () => {

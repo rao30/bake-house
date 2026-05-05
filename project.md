@@ -20,7 +20,10 @@ There are **two stacks in this repo**, only one of which is live:
 - One self-contained HTML file (~310 lines), CDN Tailwind, no build step.
 - All menu data hardcoded in the `MENU_DATA` array — [public/index.html:53-96](public/index.html#L53-L96).
 - Business info in `BUSINESS_INFO` — [public/index.html:47-52](public/index.html#L47-L52).
-- Each menu item currently renders a "Photo coming soon" placeholder — [public/index.html:198-203](public/index.html#L198-L203). **This is where real product images need to be wired in.**
+- Cards: full-width 4:3 photo on top, name + price + description + per-item WhatsApp deep-link button beneath. Grid is 1 col mobile / 2 col tablet / 3 col desktop. Items still missing an `image` show a "Sweet Treat — Photo coming soon" gradient placeholder.
+- Per-item "Order on WhatsApp" buttons open `wa.me/<phone>?text=...` with a prefilled order message — see `waLinkFor()` in [public/index.html](public/index.html).
+- Mobile-only sticky bottom CTA bar (`#mobileCtaBar`) gives one-tap access to Call and WhatsApp; auto-hides on `sm:` and up.
+- Tap-to-zoom lightbox (`#lightbox`) on every product image. Closes on overlay click, the X button, or `Escape`.
 - Live menu categories: `Custom Cakes`, `Cupcakes & Muffins` (combined), `Cookies`, `Brownies`, `Donuts`, `Tea Time Cakes`, `Sheet Cakes`.
 - Donuts currently shows a single showcase item ("Classic Glazed Donut" @ ₹80). Other 6 donut variants are held back; expand when moving to a richer frontend (React).
 
