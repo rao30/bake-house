@@ -69,6 +69,32 @@ const icons = {
 const PHONE_NUMBER_CLEAN = BUSINESS_INFO.phone.replace(/[^0-9]/g, "");
 const WHATSAPP_LINK = `https://wa.me/${PHONE_NUMBER_CLEAN}`;
 const CALL_LINK = `tel:${BUSINESS_INFO.phone.replace(/\s+/g, "")}`;
+
+const FESTIVAL_PROMOS = [
+    { slug: "diwali", title: "Diwali Hampers", blurb: "Brownie + cookie boxes for the festival of lights.", emoji: "🪔" },
+    { slug: "christmas", title: "Christmas Bakes", blurb: "Plum cakes, gingerbread, festive sheet cakes.", emoji: "🎄" },
+    { slug: "birthdays", title: "Birthday Cakes", blurb: "Custom designs, themes, photo prints.", emoji: "🎂" },
+    { slug: "valentines", title: "Valentine's Boxes", blurb: "Heart cupcakes & red velvet for two.", emoji: "💝" }
+];
+
+const FEATURED_PICKS = [
+    { name: "Red Velvet Cupcake", image: "/images/menu/cupcake_05.webp", caption: "Cream cheese frosting, every time." },
+    { name: "Dark Chocolate Brownie", image: "/images/menu/brownie_01.webp", caption: "Fudgy. Rich. Always warm." },
+    { name: "Marble Tea Time Cake", image: "/images/menu/tea_time_cake_09.webp", caption: "Vanilla & cocoa, swirled." }
+];
+
+const CUSTOMER_STORAGE_KEY = "bakehouse_customer_v1";
+const loadSavedCustomer = () => {
+    try {
+        const raw = localStorage.getItem(CUSTOMER_STORAGE_KEY);
+        if (!raw) return {};
+        const parsed = JSON.parse(raw);
+        return (parsed && typeof parsed === "object") ? parsed : {};
+    } catch (err) { return {}; }
+};
+const saveCustomer = (data) => {
+    try { localStorage.setItem(CUSTOMER_STORAGE_KEY, JSON.stringify(data)); } catch (err) {}
+};
 const waLinkFor = (item) => {
     const priceSuffix = item && item.price ? ` (${item.price})` : "";
     const msg = item
@@ -159,7 +185,15 @@ const clearCart = () => {
     renderCartContents();
 };
 
-const buildCartWhatsAppLink = () => {
+const formatPickupDate = (iso) => {
+    if (!iso) return "";
+    try {
+        const d = new Date(iso + "T00:00:00");
+        return d.toLocaleDateString("en-IN", { weekday: "short", day: "numeric", month: "short", year: "numeric" });
+    } catch (err) { return iso; }
+};
+
+const buildCartWhatsAppLink = (customer) => {
     if (!cart.length) return GENERAL_WA_LINK;
     const lines = cart.map(line => {
         const variant = line.variantLabel ? ` — ${line.variantLabel}` : "";
@@ -167,14 +201,22 @@ const buildCartWhatsAppLink = () => {
         return `• ${line.quantity}× ${line.name}${variant} — ${formatINR(line.unitPrice)} ea (${formatINR(lineTotal)})`;
     });
     const subtotal = cartSubtotal();
+    const header = ["Hi! I'd like to place a pickup order from The BakeHouse:"];
+    const customerLines = [];
+    if (customer && customer.name) customerLines.push(`Name: ${customer.name}`);
+    if (customer && customer.phone) customerLines.push(`Phone: ${customer.phone}`);
+    if (customer && customer.pickupDate) customerLines.push(`Pickup date: ${formatPickupDate(customer.pickupDate)}`);
+    if (customer && customer.pickupTime) customerLines.push(`Pickup time: ${customer.pickupTime}`);
+    if (customer && customer.notes) customerLines.push(`Notes: ${customer.notes}`);
     const message = [
-        "Hi! I'd like to place an order from The BakeHouse:",
+        ...header,
         "",
         ...lines,
         "",
         `Subtotal: ${formatINR(subtotal)}`,
+        ...(customerLines.length ? ["", "— Order details —", ...customerLines] : []),
         "",
-        "Could you confirm availability and pickup/delivery? Thank you!"
+        "Could you confirm availability? Thank you!"
     ].join("\n");
     return `${WHATSAPP_LINK}?text=${encodeURIComponent(message)}`;
 };
@@ -225,7 +267,6 @@ const renderCartContents = () => {
     if (checkoutBtn) {
         checkoutBtn.classList.remove("opacity-50", "pointer-events-none");
         checkoutBtn.removeAttribute("aria-disabled");
-        checkoutBtn.href = buildCartWhatsAppLink();
     }
     if (clearBtn) clearBtn.classList.remove("hidden");
 };
@@ -251,6 +292,69 @@ window.hideCart = () => {
         modal.classList.add("hidden");
         document.body.style.overflow = "";
     }, 300);
+};
+
+const todayLocalISO = () => {
+    const d = new Date();
+    const tz = d.getTimezoneOffset() * 60000;
+    return new Date(d - tz).toISOString().slice(0, 10);
+};
+
+const PICKUP_TIME_SLOTS = [
+    "10:00 AM – 12:00 PM",
+    "12:00 PM – 2:00 PM",
+    "2:00 PM – 4:00 PM",
+    "4:00 PM – 6:00 PM",
+    "6:00 PM – 8:00 PM"
+];
+
+window.showCheckout = () => {
+    if (!cart.length) return;
+    const modal = document.getElementById("checkoutModal");
+    if (!modal) return;
+    const saved = loadSavedCustomer();
+    const form = modal.querySelector("form");
+    if (form) {
+        form.elements.name.value = saved.name || "";
+        form.elements.phone.value = saved.phone || "";
+        form.elements.pickupDate.min = todayLocalISO();
+        if (!form.elements.pickupDate.value) form.elements.pickupDate.value = todayLocalISO();
+        form.elements.pickupTime.value = saved.pickupTime || PICKUP_TIME_SLOTS[2];
+        form.elements.notes.value = "";
+        const errEl = modal.querySelector("[data-checkout-error]");
+        if (errEl) { errEl.textContent = ""; errEl.classList.add("hidden"); }
+    }
+    const summaryEl = modal.querySelector("[data-checkout-summary]");
+    if (summaryEl) {
+        const lines = cart.map(line => {
+            const variant = line.variantLabel ? ` · ${line.variantLabel}` : "";
+            return `<li class="flex justify-between gap-3"><span>${line.quantity}× ${line.name}${variant}</span><span class="text-[#4a3b32]/70">${formatINR(line.unitPrice * line.quantity)}</span></li>`;
+        }).join("");
+        summaryEl.innerHTML = `
+            <ul class="text-sm space-y-1">${lines}</ul>
+            <div class="flex justify-between pt-2 mt-2 border-t border-[#4a3b32]/10 font-bold">
+                <span>Subtotal</span><span class="text-[#d65a66]">${formatINR(cartSubtotal())}</span>
+            </div>`;
+    }
+    modal.classList.remove("hidden");
+    requestAnimationFrame(() => {
+        modal.classList.remove("opacity-0");
+        modal.querySelector(".checkout-content").classList.remove("translate-y-4", "opacity-0");
+    });
+    document.body.style.overflow = "hidden";
+};
+
+window.hideCheckout = () => {
+    const modal = document.getElementById("checkoutModal");
+    if (!modal) return;
+    modal.querySelector(".checkout-content").classList.add("translate-y-4", "opacity-0");
+    modal.classList.add("opacity-0");
+    setTimeout(() => {
+        modal.classList.add("hidden");
+        if (document.getElementById("cartModal").classList.contains("hidden")) {
+            document.body.style.overflow = "";
+        }
+    }, 250);
 };
 
 (function() {
@@ -326,16 +430,19 @@ window.hideCart = () => {
     const renderApp = () => {
         app.innerHTML = `
             <div class="fixed top-0 left-0 right-0 z-50 bg-[#4a3b32] text-[#f9f3e5] px-4 py-3 shadow-md flex justify-between items-center transition-all duration-300">
-                <div class="flex items-center gap-2">
+                <a href="/" class="flex items-center gap-2 hover:opacity-90 transition-opacity">
                     <div class="font-serif font-bold text-xl tracking-wider">${BUSINESS_INFO.name}</div>
-                </div>
+                </a>
                 <div class="flex items-center gap-2">
+                    <a href="/festivals" class="hidden sm:inline-flex items-center gap-1 text-[#f9f3e5]/85 hover:text-[#ebaeb3] text-sm font-bold tracking-wide px-2 py-1 transition-colors" aria-label="Browse seasonal festival hampers">
+                        <span>Festivals</span>
+                    </a>
                     <button onclick="showCart()" class="relative flex items-center gap-2 bg-[#f9f3e5] text-[#4a3b32] px-3 py-1.5 rounded-full font-bold text-sm hover:bg-[#ebaeb3] transition-colors" aria-label="Open cart">
                         ${icons.cart}
                         <span class="hidden sm:inline">Cart</span>
                         <span data-cart-count class="absolute -top-1 -right-1 bg-[#d65a66] text-white text-[10px] font-bold min-w-[18px] h-[18px] px-1 rounded-full flex items-center justify-center hidden">0</span>
                     </button>
-                    <button onclick="showCallOptions()" class="flex items-center gap-2 bg-[#ebaeb3] text-[#4a3b32] px-4 py-1.5 rounded-full font-bold text-sm hover:bg-[#d65a66] hover:text-white transition-colors animate-pulse">
+                    <button onclick="showCallOptions()" class="flex items-center gap-2 bg-[#ebaeb3] text-[#4a3b32] px-4 py-1.5 rounded-full font-bold text-sm hover:bg-[#d65a66] hover:text-white transition-colors" aria-label="Call to order">
                         ${icons.phone}
                         <span class="hidden sm:inline">Call to Order</span>
                         <span class="sm:hidden">Call</span>
@@ -347,11 +454,80 @@ window.hideCart = () => {
                     ${renderNavButtons(activeCategory)}
                 </div>
             </div>
-            <main class="pt-40 max-w-6xl mx-auto px-4 sm:px-6">
-                <div class="text-center mb-12 space-y-4">
-                    <div class="w-16 h-16 mx-auto bg-[#ebaeb3] rounded-full flex items-center justify-center text-3xl shadow-inner">🧁</div>
-                    <h1 class="text-4xl sm:text-5xl font-serif font-bold text-[#4a3b32]">Menu</h1>
-                    <p class="text-[#4a3b32]/70 italic max-w-md mx-auto">Handcrafted with love, sugar, and everything nice.<br/>Call us at <strong class="text-[#d65a66]">${BUSINESS_INFO.phone}</strong></p>
+            <section class="hero-photo relative pt-40 pb-16 sm:pt-48 sm:pb-24 px-4 overflow-hidden" style="background-image: url('/images/menu/facility_01.webp');">
+                <div class="relative z-10 max-w-3xl mx-auto text-center text-[#f9f3e5] space-y-5">
+                    <div class="inline-flex items-center gap-2 bg-[#f9f3e5]/15 backdrop-blur-sm border border-[#f9f3e5]/25 px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase">
+                        <span>🧁</span><span>Small-batch bakery · Made fresh daily</span>
+                    </div>
+                    <h1 class="text-4xl sm:text-6xl font-serif font-bold leading-tight">Handcrafted bakes,<br class="hidden sm:block" /> made with love.</h1>
+                    <p class="text-base sm:text-lg max-w-xl mx-auto text-[#f9f3e5]/90 leading-relaxed">
+                        Custom cakes, fresh-from-the-oven cookies, fudgy brownies and tea-time loaves —
+                        baked in small batches at The BakeHouse. Order on WhatsApp, pick up the same day.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-3 justify-center pt-2">
+                        <a href="#menu" class="inline-flex items-center justify-center gap-2 bg-[#ebaeb3] text-[#4a3b32] px-6 py-3 rounded-full font-bold hover:bg-white transition-colors shadow-lg">
+                            Browse the menu
+                        </a>
+                        <a href="${GENERAL_WA_LINK}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 bg-green-600 text-white px-6 py-3 rounded-full font-bold hover:bg-green-700 transition-colors shadow-lg">
+                            ${icons.whatsapp}<span>Chat on WhatsApp</span>
+                        </a>
+                    </div>
+                    <div class="text-xs text-[#f9f3e5]/70 pt-1">Open daily 9 AM – 9 PM · ${BUSINESS_INFO.phone}</div>
+                </div>
+            </section>
+
+            <section class="max-w-6xl mx-auto px-4 sm:px-6 -mt-10 relative z-10">
+                <div class="bg-white/90 backdrop-blur-sm border border-[#4a3b32]/10 rounded-2xl shadow-xl p-5 sm:p-6">
+                    <div class="flex items-center justify-between gap-3 mb-4">
+                        <div>
+                            <div class="text-[10px] tracking-[0.18em] uppercase text-[#d65a66] font-bold">Featured this week</div>
+                            <h2 class="font-serif text-xl sm:text-2xl font-bold text-[#4a3b32]">Three picks from the kitchen</h2>
+                        </div>
+                        <a href="#menu" class="hidden sm:inline text-sm font-bold text-[#4a3b32]/70 hover:text-[#d65a66] transition-colors">Full menu →</a>
+                    </div>
+                    <div class="grid grid-cols-3 gap-3 sm:gap-5">
+                        ${FEATURED_PICKS.map(p => `
+                            <a href="#menu" class="group block">
+                                <div class="aspect-square overflow-hidden rounded-xl bg-[#f1c6cf]/30">
+                                    <img src="${p.image}" alt="${p.name}" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                                </div>
+                                <div class="mt-2 text-center">
+                                    <div class="font-bold text-xs sm:text-sm text-[#4a3b32] leading-tight">${p.name}</div>
+                                    <div class="hidden sm:block text-[11px] italic text-[#4a3b32]/60 leading-snug mt-0.5">${p.caption}</div>
+                                </div>
+                            </a>
+                        `).join("")}
+                    </div>
+                </div>
+            </section>
+
+            <section class="max-w-6xl mx-auto px-4 sm:px-6 mt-12 sm:mt-16">
+                <div class="rounded-2xl bg-gradient-to-br from-[#ebaeb3]/40 via-[#f9f3e5] to-[#ebaeb3]/30 border border-[#d65a66]/15 p-5 sm:p-7">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div>
+                            <div class="text-[10px] tracking-[0.18em] uppercase text-[#d65a66] font-bold">Seasonal hampers</div>
+                            <h2 class="font-serif text-2xl font-bold text-[#4a3b32]">Festival &amp; Birthday Boxes</h2>
+                            <p class="text-sm text-[#4a3b32]/75 mt-1 max-w-md">Curated hampers and custom cakes for Diwali, Christmas, birthdays and more.</p>
+                        </div>
+                        <a href="/festivals" class="inline-flex items-center justify-center gap-2 bg-[#4a3b32] text-[#f9f3e5] px-5 py-2.5 rounded-full font-bold text-sm hover:bg-[#d65a66] transition-colors shadow-md whitespace-nowrap">
+                            Explore festivals →
+                        </a>
+                    </div>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mt-5">
+                        ${FESTIVAL_PROMOS.map(f => `
+                            <a href="/festivals/${f.slug}" class="festival-card flex items-center gap-2 bg-white/80 hover:bg-white border border-[#4a3b32]/10 rounded-xl px-3 py-2.5">
+                                <span class="text-xl">${f.emoji}</span>
+                                <span class="text-xs sm:text-sm font-bold text-[#4a3b32] leading-tight">${f.title}</span>
+                            </a>
+                        `).join("")}
+                    </div>
+                </div>
+            </section>
+
+            <main id="menu" class="pt-12 sm:pt-16 max-w-6xl mx-auto px-4 sm:px-6 scroll-mt-32">
+                <div class="text-center mb-10 space-y-3">
+                    <h2 class="text-3xl sm:text-4xl font-serif font-bold text-[#4a3b32]">The Menu</h2>
+                    <p class="text-[#4a3b32]/70 italic max-w-md mx-auto text-sm">Handcrafted with love, sugar, and everything nice.</p>
                     <div class="w-24 h-1 bg-[#4a3b32] mx-auto opacity-20 rounded-full"></div>
                 </div>
                 <div class="space-y-16">
@@ -459,9 +635,55 @@ window.hideCart = () => {
                             <span id="cartSubtotal" class="font-serif text-xl font-bold text-[#d65a66]">₹0</span>
                         </div>
                         <p class="text-[10px] text-[#4a3b32]/60 leading-relaxed">Final price confirmed by ${BUSINESS_INFO.name} on WhatsApp. Custom cake designs may carry additional cost.</p>
-                        <a id="cartCheckoutBtn" href="${GENERAL_WA_LINK}" target="_blank" rel="noopener noreferrer" class="w-full flex items-center justify-center gap-2 bg-green-600 text-white py-3 rounded-lg font-bold hover:bg-green-700 transition-colors shadow-md opacity-50 pointer-events-none" aria-disabled="true">${icons.whatsapp} Send Order on WhatsApp</a>
+                        <button id="cartCheckoutBtn" type="button" onclick="showCheckout()" class="w-full flex items-center justify-center gap-2 bg-green-600 text-white py-3 rounded-lg font-bold hover:bg-green-700 transition-colors shadow-md opacity-50 pointer-events-none" aria-disabled="true">${icons.whatsapp} Continue to Checkout</button>
                         <button id="cartClearBtn" type="button" class="w-full text-xs text-[#4a3b32]/60 py-1 hover:text-[#d65a66] transition-colors hidden">Clear cart</button>
                     </div>
+                </div>
+            </div>
+            <div id="checkoutModal" class="fixed inset-0 bg-black/60 z-[108] hidden transition-opacity duration-300 opacity-0 flex items-end sm:items-center justify-center p-0 sm:p-4 overflow-y-auto" aria-modal="true" role="dialog" aria-label="Checkout details">
+                <div class="checkout-content relative bg-[#f9f3e5] w-full sm:max-w-lg sm:rounded-2xl rounded-t-2xl shadow-2xl translate-y-4 opacity-0 transition-all duration-250 my-0 sm:my-8">
+                    <div class="flex items-center justify-between px-5 py-4 border-b border-[#4a3b32]/15 bg-[#4a3b32] text-[#f9f3e5] sm:rounded-t-2xl">
+                        <h3 class="font-serif text-xl font-bold">Pickup Details</h3>
+                        <button type="button" onclick="hideCheckout()" class="p-1.5 hover:bg-white/10 rounded-full transition-colors" aria-label="Close checkout">${icons.close}</button>
+                    </div>
+                    <form id="checkoutForm" class="px-5 py-5 space-y-4" novalidate>
+                        <div data-checkout-summary class="bg-white/60 rounded-lg p-3 border border-[#4a3b32]/10"></div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <label class="block">
+                                <span class="text-xs font-bold uppercase tracking-wider text-[#4a3b32]/80">Your name *</span>
+                                <input name="name" required type="text" autocomplete="name" placeholder="e.g. Priya" class="mt-1 w-full px-3 py-2.5 rounded-lg border border-[#4a3b32]/20 bg-white focus:outline-none focus:ring-2 focus:ring-[#d65a66] text-[#4a3b32]" />
+                            </label>
+                            <label class="block">
+                                <span class="text-xs font-bold uppercase tracking-wider text-[#4a3b32]/80">Phone *</span>
+                                <input name="phone" required type="tel" autocomplete="tel" inputmode="tel" placeholder="+91 9XXXXXXXXX" pattern="[0-9 +\\-]{8,}" class="mt-1 w-full px-3 py-2.5 rounded-lg border border-[#4a3b32]/20 bg-white focus:outline-none focus:ring-2 focus:ring-[#d65a66] text-[#4a3b32]" />
+                            </label>
+                            <label class="block">
+                                <span class="text-xs font-bold uppercase tracking-wider text-[#4a3b32]/80">Pickup date *</span>
+                                <input name="pickupDate" required type="date" class="mt-1 w-full px-3 py-2.5 rounded-lg border border-[#4a3b32]/20 bg-white focus:outline-none focus:ring-2 focus:ring-[#d65a66] text-[#4a3b32]" />
+                            </label>
+                            <label class="block">
+                                <span class="text-xs font-bold uppercase tracking-wider text-[#4a3b32]/80">Pickup time *</span>
+                                <select name="pickupTime" required class="mt-1 w-full px-3 py-2.5 rounded-lg border border-[#4a3b32]/20 bg-white focus:outline-none focus:ring-2 focus:ring-[#d65a66] text-[#4a3b32]">
+                                    ${PICKUP_TIME_SLOTS.map(t => `<option value="${t}">${t}</option>`).join("")}
+                                </select>
+                            </label>
+                        </div>
+                        <label class="block">
+                            <span class="text-xs font-bold uppercase tracking-wider text-[#4a3b32]/80">Special instructions (optional)</span>
+                            <textarea name="notes" rows="2" placeholder="Custom message on cake, allergies, etc." class="mt-1 w-full px-3 py-2.5 rounded-lg border border-[#4a3b32]/20 bg-white focus:outline-none focus:ring-2 focus:ring-[#d65a66] text-[#4a3b32]"></textarea>
+                        </label>
+                        <p class="text-[11px] text-[#4a3b32]/60 leading-relaxed">
+                            Custom cakes need at least <strong>48 hours</strong> notice. We'll confirm availability and final price on WhatsApp before you pay.
+                            <strong>Pickup only</strong> — we don't deliver right now.
+                        </p>
+                        <p data-checkout-error class="hidden text-sm text-red-600 font-bold"></p>
+                        <div class="flex gap-2">
+                            <button type="button" onclick="hideCheckout()" class="flex-1 py-3 rounded-lg font-bold text-[#4a3b32] bg-[#4a3b32]/5 hover:bg-[#4a3b32]/10 transition-colors">Back to cart</button>
+                            <button type="submit" class="flex-[2] flex items-center justify-center gap-2 bg-green-600 text-white py-3 rounded-lg font-bold hover:bg-green-700 transition-colors shadow-md">
+                                ${icons.whatsapp}<span>Send on WhatsApp</span>
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
             <div id="lightbox" class="fixed inset-0 bg-black/90 z-[110] hidden opacity-0 transition-opacity duration-300 items-center justify-center p-4" role="dialog" aria-modal="true" aria-label="Photo viewer">
@@ -536,9 +758,48 @@ window.hideCart = () => {
                 }
             });
         }
+        const checkoutModal = document.getElementById("checkoutModal");
+        if (checkoutModal) {
+            checkoutModal.addEventListener("click", (event) => {
+                if (event.target.id === "checkoutModal") hideCheckout();
+            });
+            const form = document.getElementById("checkoutForm");
+            if (form) {
+                form.addEventListener("submit", (event) => {
+                    event.preventDefault();
+                    const errEl = checkoutModal.querySelector("[data-checkout-error]");
+                    const showErr = (msg) => {
+                        if (!errEl) return;
+                        errEl.textContent = msg;
+                        errEl.classList.remove("hidden");
+                    };
+                    if (errEl) { errEl.textContent = ""; errEl.classList.add("hidden"); }
+                    const data = {
+                        name: form.elements.name.value.trim(),
+                        phone: form.elements.phone.value.trim(),
+                        pickupDate: form.elements.pickupDate.value,
+                        pickupTime: form.elements.pickupTime.value,
+                        notes: form.elements.notes.value.trim()
+                    };
+                    if (!data.name) return showErr("Please enter your name.");
+                    if (!data.phone || data.phone.replace(/[^0-9]/g, "").length < 8) return showErr("Please enter a valid phone number.");
+                    if (!data.pickupDate) return showErr("Please pick a pickup date.");
+                    const today = todayLocalISO();
+                    if (data.pickupDate < today) return showErr("Pickup date can't be in the past.");
+                    if (!data.pickupTime) return showErr("Please pick a pickup time.");
+                    if (!cart.length) return showErr("Your cart is empty.");
+                    saveCustomer({ name: data.name, phone: data.phone, pickupTime: data.pickupTime });
+                    const url = buildCartWhatsAppLink(data);
+                    window.open(url, "_blank", "noopener");
+                    hideCheckout();
+                    setTimeout(() => hideCart(), 100);
+                });
+            }
+        }
         document.addEventListener("keydown", (event) => {
             if (event.key !== "Escape") return;
             if (!document.getElementById("lightbox").classList.contains("hidden")) closeLightbox();
+            else if (!document.getElementById("checkoutModal").classList.contains("hidden")) hideCheckout();
             else if (!document.getElementById("cartModal").classList.contains("hidden")) hideCart();
             else if (!document.getElementById("callModal").classList.contains("hidden")) hideCallOptions();
         });
