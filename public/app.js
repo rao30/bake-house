@@ -423,12 +423,17 @@ window.hideCheckout = () => {
         });
     };
 
+    const getTopbarHeight = () => {
+        const tb = document.getElementById("topbar");
+        return tb ? tb.getBoundingClientRect().height : 110;
+    };
+
     const scrollToCategory = (category) => {
         activeCategory = category;
         updateNavButtons(category);
         const element = document.getElementById(category);
         if (element) {
-            const offset = 180;
+            const offset = getTopbarHeight() + 16;
             const y = element.getBoundingClientRect().top + window.pageYOffset - offset;
             window.scrollTo({ top: y, behavior: "smooth" });
         }
@@ -436,29 +441,31 @@ window.hideCheckout = () => {
 
     const renderApp = () => {
         app.innerHTML = `
-            <div class="fixed top-0 left-0 right-0 z-50 bg-[#4a3b32] text-[#f9f3e5] px-4 py-3 shadow-md flex justify-between items-center transition-all duration-300">
-                <a href="/" class="flex items-center gap-2 hover:opacity-90 transition-opacity">
-                    <div class="font-serif font-bold text-xl tracking-wider">${BUSINESS_INFO.name}</div>
-                </a>
-                <div class="flex items-center gap-2">
-                    <button onclick="showCart()" class="relative flex items-center gap-2 bg-[#f9f3e5] text-[#4a3b32] px-3 py-1.5 rounded-full font-bold text-sm hover:bg-[#ebaeb3] transition-colors" aria-label="Open cart">
-                        ${icons.cart}
-                        <span class="hidden sm:inline">Cart</span>
-                        <span data-cart-count class="absolute -top-1 -right-1 bg-[#d65a66] text-white text-[10px] font-bold min-w-[18px] h-[18px] px-1 rounded-full flex items-center justify-center hidden">0</span>
-                    </button>
-                    <button onclick="showCallOptions()" class="flex items-center gap-2 bg-[#ebaeb3] text-[#4a3b32] px-4 py-1.5 rounded-full font-bold text-sm hover:bg-[#d65a66] hover:text-white transition-colors" aria-label="Call to order">
-                        ${icons.phone}
-                        <span class="hidden sm:inline">Call to Order</span>
-                        <span class="sm:hidden">Call</span>
-                    </button>
+            <div id="topbar" class="fixed top-0 left-0 right-0 z-50">
+                <div class="bg-[#4a3b32] text-[#f9f3e5] px-4 py-3 shadow-md flex justify-between items-center">
+                    <a href="/" class="flex items-center gap-2 hover:opacity-90 transition-opacity">
+                        <div class="font-serif font-bold text-xl tracking-wider">${BUSINESS_INFO.name}</div>
+                    </a>
+                    <div class="flex items-center gap-2">
+                        <button onclick="showCart()" class="relative flex items-center gap-2 bg-[#f9f3e5] text-[#4a3b32] px-3 py-1.5 rounded-full font-bold text-sm hover:bg-[#ebaeb3] transition-colors" aria-label="Open cart">
+                            ${icons.cart}
+                            <span class="hidden sm:inline">Cart</span>
+                            <span data-cart-count class="absolute -top-1 -right-1 bg-[#d65a66] text-white text-[10px] font-bold min-w-[18px] h-[18px] px-1 rounded-full flex items-center justify-center hidden">0</span>
+                        </button>
+                        <button onclick="showCallOptions()" class="flex items-center gap-2 bg-[#ebaeb3] text-[#4a3b32] px-4 py-1.5 rounded-full font-bold text-sm hover:bg-[#d65a66] hover:text-white transition-colors" aria-label="Call to order">
+                            ${icons.phone}
+                            <span class="hidden sm:inline">Call to Order</span>
+                            <span class="sm:hidden">Call</span>
+                        </button>
+                    </div>
+                </div>
+                <div id="navbar" class="bg-[#f9f3e5]/95 backdrop-blur-sm border-b border-[#4a3b32]/10 transition-all duration-300 py-3">
+                    <div class="max-w-4xl mx-auto px-4 overflow-x-auto no-scrollbar flex gap-4 sm:justify-center" id="nav-container">
+                        ${renderNavButtons(activeCategory)}
+                    </div>
                 </div>
             </div>
-            <div id="navbar" class="fixed top-[52px] left-0 right-0 z-40 bg-[#f9f3e5]/95 backdrop-blur-sm border-b border-[#4a3b32]/10 transition-all duration-300 py-4">
-                <div class="max-w-4xl mx-auto px-4 overflow-x-auto no-scrollbar flex gap-4 sm:justify-center" id="nav-container">
-                    ${renderNavButtons(activeCategory)}
-                </div>
-            </div>
-            <section class="hero-photo relative pt-40 pb-16 sm:pt-48 sm:pb-24 px-4 overflow-hidden" style="background-image: url('/images/menu/facility_01.webp');">
+            <section class="hero-photo relative pt-32 pb-16 sm:pt-40 sm:pb-24 px-4 overflow-hidden" style="background-image: url('/images/menu/facility_01.webp');">
                 <div class="relative z-10 max-w-3xl mx-auto text-center text-[#f9f3e5] space-y-5">
                     <div class="inline-flex items-center gap-2 bg-[#f9f3e5]/15 backdrop-blur-sm border border-[#f9f3e5]/25 px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase">
                         <span>🧁</span><span>Small-batch bakery · Made fresh daily</span>
@@ -513,7 +520,7 @@ window.hideCheckout = () => {
                 </div>
                 <div class="space-y-16">
                     ${MENU_DATA.map(section => `
-                        <section id="${section.category}" class="scroll-mt-48">
+                        <section id="${section.category}" class="scroll-mt-32">
                             <div class="flex items-center gap-4 mb-8">
                                 <h2 class="text-2xl font-serif font-bold text-[#4a3b32] border-b-2 border-[#ebaeb3] pb-1 pr-4 inline-block">${section.category.toUpperCase()}</h2>
                                 <div class="h-px bg-[#4a3b32]/10 flex-grow"></div>
@@ -717,7 +724,7 @@ window.hideCheckout = () => {
                 const itemId = featured.getAttribute("data-featured-pick");
                 const card = document.querySelector(`[data-item-card="${CSS.escape(itemId)}"]`);
                 if (card) {
-                    const offset = 130;
+                    const offset = getTopbarHeight() + 16;
                     const y = card.getBoundingClientRect().top + window.pageYOffset - offset;
                     window.scrollTo({ top: y, behavior: "smooth" });
                     card.classList.remove("featured-flash");
@@ -804,10 +811,10 @@ window.hideCheckout = () => {
             const scrollY = window.scrollY;
             if (scrollY > 50) {
                 navbar.classList.add("shadow-sm", "py-2");
-                navbar.classList.remove("py-4");
+                navbar.classList.remove("py-3");
             } else {
                 navbar.classList.remove("shadow-sm", "py-2");
-                navbar.classList.add("py-4");
+                navbar.classList.add("py-3");
             }
             if (scrollY > 300) {
                 backToTop.classList.remove("opacity-0", "translate-y-10");
@@ -818,7 +825,7 @@ window.hideCheckout = () => {
             }
             let currentActive = activeCategory;
             let minDistance = Infinity;
-            const offset = 190;
+            const offset = getTopbarHeight() + 32;
             MENU_DATA.forEach(section => {
                 const element = document.getElementById(section.category);
                 if (element) {
