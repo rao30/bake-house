@@ -4,10 +4,9 @@
   "description": "Single page BakeHouse menu for Railway deployment",
   "main": "server.js",
   "scripts": {
-    "build:festivals": "node scripts/generate-festival-pages.js",
     "build:css": "tailwindcss -i ./src/styles.css -o ./public/styles.css --minify",
     "watch:css": "tailwindcss -i ./src/styles.css -o ./public/styles.css --watch",
-    "build": "npm run build:festivals && npm run build:css",
+    "build": "npm run build:css",
     "prestart": "npm run build",
     "start": "node server.js",
     "thumbnails": "node scripts/generate-thumbnails.js"

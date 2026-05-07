@@ -52,18 +52,10 @@ h1, h2, h3, .font-serif {
   background: linear-gradient(180deg, rgba(74, 59, 50, 0.2) 0%, rgba(74, 59, 50, 0.55) 60%, rgba(74, 59, 50, 0.85) 100%);
 }
 
-.festival-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+@keyframes featured-flash {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(214, 90, 102, 0); }
+  30%      { box-shadow: 0 0 0 6px rgba(214, 90, 102, 0.55); }
 }
-.festival-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 18px 36px -18px rgba(74, 59, 50, 0.45);
-}
-
-@keyframes soft-pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.03); }
-}
-.soft-pulse {
-  animation: soft-pulse 2.4s ease-in-out infinite;
+.featured-flash {
+  animation: featured-flash 1.6s ease-out;
 }

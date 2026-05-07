@@ -70,18 +70,25 @@ const PHONE_NUMBER_CLEAN = BUSINESS_INFO.phone.replace(/[^0-9]/g, "");
 const WHATSAPP_LINK = `https://wa.me/${PHONE_NUMBER_CLEAN}`;
 const CALL_LINK = `tel:${BUSINESS_INFO.phone.replace(/\s+/g, "")}`;
 
-const FESTIVAL_PROMOS = [
-    { slug: "diwali", title: "Diwali Hampers", blurb: "Brownie + cookie boxes for the festival of lights.", emoji: "🪔" },
-    { slug: "christmas", title: "Christmas Bakes", blurb: "Plum cakes, gingerbread, festive sheet cakes.", emoji: "🎄" },
-    { slug: "birthdays", title: "Birthday Cakes", blurb: "Custom designs, themes, photo prints.", emoji: "🎂" },
-    { slug: "valentines", title: "Valentine's Boxes", blurb: "Heart cupcakes & red velvet for two.", emoji: "💝" }
+const FEATURED_PICKS_REFS = [
+    { category: "Cupcakes & Muffins", name: "Red Velvet Cupcake", caption: "Cream cheese frosting, every time." },
+    { category: "Brownies", name: "Dark Chocolate Brownie", caption: "Fudgy. Rich. Always warm." },
+    { category: "Tea Time Cakes", name: "Marble Cake", caption: "Vanilla & cocoa, swirled." }
 ];
 
-const FEATURED_PICKS = [
-    { name: "Red Velvet Cupcake", image: "/images/menu/cupcake_05.webp", caption: "Cream cheese frosting, every time." },
-    { name: "Dark Chocolate Brownie", image: "/images/menu/brownie_01.webp", caption: "Fudgy. Rich. Always warm." },
-    { name: "Marble Tea Time Cake", image: "/images/menu/tea_time_cake_09.webp", caption: "Vanilla & cocoa, swirled." }
-];
+const resolveFeaturedPicks = () => FEATURED_PICKS_REFS.map(ref => {
+    const section = MENU_DATA.find(s => s.category === ref.category);
+    if (!section) return null;
+    const idx = section.items.findIndex(i => i.name === ref.name);
+    if (idx < 0) return null;
+    const item = section.items[idx];
+    return {
+        ...ref,
+        item,
+        image: item.image,
+        itemId: `${section.category}__${idx}`
+    };
+}).filter(Boolean);
 
 const CUSTOMER_STORAGE_KEY = "bakehouse_customer_v1";
 const loadSavedCustomer = () => {
@@ -434,9 +441,6 @@ window.hideCheckout = () => {
                     <div class="font-serif font-bold text-xl tracking-wider">${BUSINESS_INFO.name}</div>
                 </a>
                 <div class="flex items-center gap-2">
-                    <a href="/festivals" class="hidden sm:inline-flex items-center gap-1 text-[#f9f3e5]/85 hover:text-[#ebaeb3] text-sm font-bold tracking-wide px-2 py-1 transition-colors" aria-label="Browse seasonal festival hampers">
-                        <span>Festivals</span>
-                    </a>
                     <button onclick="showCart()" class="relative flex items-center gap-2 bg-[#f9f3e5] text-[#4a3b32] px-3 py-1.5 rounded-full font-bold text-sm hover:bg-[#ebaeb3] transition-colors" aria-label="Open cart">
                         ${icons.cart}
                         <span class="hidden sm:inline">Cart</span>
@@ -486,39 +490,16 @@ window.hideCheckout = () => {
                         <a href="#menu" class="hidden sm:inline text-sm font-bold text-[#4a3b32]/70 hover:text-[#d65a66] transition-colors">Full menu →</a>
                     </div>
                     <div class="grid grid-cols-3 gap-3 sm:gap-5">
-                        ${FEATURED_PICKS.map(p => `
-                            <a href="#menu" class="group block">
+                        ${resolveFeaturedPicks().map(p => `
+                            <button type="button" data-featured-pick="${p.itemId}" class="group block text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d65a66] rounded-xl">
                                 <div class="aspect-square overflow-hidden rounded-xl bg-[#f1c6cf]/30">
-                                    <img src="${p.image}" alt="${p.name}" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                                    <img src="${p.image}" alt="${p.item.name}" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                                 </div>
                                 <div class="mt-2 text-center">
-                                    <div class="font-bold text-xs sm:text-sm text-[#4a3b32] leading-tight">${p.name}</div>
+                                    <div class="font-bold text-xs sm:text-sm text-[#4a3b32] group-hover:text-[#d65a66] transition-colors leading-tight">${p.item.name}</div>
                                     <div class="hidden sm:block text-[11px] italic text-[#4a3b32]/60 leading-snug mt-0.5">${p.caption}</div>
                                 </div>
-                            </a>
-                        `).join("")}
-                    </div>
-                </div>
-            </section>
-
-            <section class="max-w-6xl mx-auto px-4 sm:px-6 mt-12 sm:mt-16">
-                <div class="rounded-2xl bg-gradient-to-br from-[#ebaeb3]/40 via-[#f9f3e5] to-[#ebaeb3]/30 border border-[#d65a66]/15 p-5 sm:p-7">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                        <div>
-                            <div class="text-[10px] tracking-[0.18em] uppercase text-[#d65a66] font-bold">Seasonal hampers</div>
-                            <h2 class="font-serif text-2xl font-bold text-[#4a3b32]">Festival &amp; Birthday Boxes</h2>
-                            <p class="text-sm text-[#4a3b32]/75 mt-1 max-w-md">Curated hampers and custom cakes for Diwali, Christmas, birthdays and more.</p>
-                        </div>
-                        <a href="/festivals" class="inline-flex items-center justify-center gap-2 bg-[#4a3b32] text-[#f9f3e5] px-5 py-2.5 rounded-full font-bold text-sm hover:bg-[#d65a66] transition-colors shadow-md whitespace-nowrap">
-                            Explore festivals →
-                        </a>
-                    </div>
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mt-5">
-                        ${FESTIVAL_PROMOS.map(f => `
-                            <a href="/festivals/${f.slug}" class="festival-card flex items-center gap-2 bg-white/80 hover:bg-white border border-[#4a3b32]/10 rounded-xl px-3 py-2.5">
-                                <span class="text-xl">${f.emoji}</span>
-                                <span class="text-xs sm:text-sm font-bold text-[#4a3b32] leading-tight">${f.title}</span>
-                            </a>
+                            </button>
                         `).join("")}
                     </div>
                 </div>
@@ -729,6 +710,20 @@ window.hideCheckout = () => {
                         addBtn.classList.add("ring-2", "ring-[#4a3b32]");
                         setTimeout(() => addBtn.classList.remove("ring-2", "ring-[#4a3b32]"), 220);
                     }
+                }
+            }
+            const featured = event.target.closest("[data-featured-pick]");
+            if (featured) {
+                const itemId = featured.getAttribute("data-featured-pick");
+                const card = document.querySelector(`[data-item-card="${CSS.escape(itemId)}"]`);
+                if (card) {
+                    const offset = 130;
+                    const y = card.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({ top: y, behavior: "smooth" });
+                    card.classList.remove("featured-flash");
+                    void card.offsetWidth;
+                    card.classList.add("featured-flash");
+                    setTimeout(() => card.classList.remove("featured-flash"), 1700);
                 }
             }
         });
