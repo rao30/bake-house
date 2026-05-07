@@ -5,7 +5,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 const publicDir = path.join(__dirname, 'public');
-app.use(express.static(publicDir));
+app.use(express.static(publicDir, { redirect: false }));
 
 app.get('*', (_req, res) => {
   res.sendFile(path.join(publicDir, 'index.html'));
